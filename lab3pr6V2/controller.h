@@ -41,3 +41,8 @@ void controllerMigration(controller *worldController,int index1,int index2,long 
 {
 	repositoryMigration(worldController -> NewController,index1,index2,nr);
 }
+
+void controllerGetAllWhoContain(controller *worldController,char sub[])
+{
+	repositoryGetAllWhoContain(worldController -> NewController,sub);
+}

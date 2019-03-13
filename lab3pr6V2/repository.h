@@ -42,7 +42,7 @@ void repositoryAddCountry(world *currentWorld,char name[],char continent[],long 
 
 	if (index == -1)
 	{
-		printf("We are adding a new country to the repository");
+		printf("We are adding a new country to the repository...\n");
 		Country newCountry;
 		newCountry = create_country(name,continent,population);
 		currentWorld -> con[currentWorld -> lenght++] = newCountry;
@@ -98,3 +98,39 @@ void repositoryMigration(world *currentWorld,int index1,int index2,long long nr)
 	}
 }
 
+int containsString(char *st1,char *st2)
+{
+	char *res;
+	void *ret;
+	ret = NULL;
+	res = strstr(st1,st2);
+	if (res == ret) return 0;
+	return 1;
+}
+
+void repositoryGetAllWhoContain(world *currentWorld,char substring[])
+{
+	if (substring == "")
+	{
+		repositoryGetAllCountries(currentWorld);
+	}
+	else
+	{
+		Country countries[100];
+		int index = 0;
+		for (int i = 0; i < currentWorld -> lenght; ++i)
+		{
+			if (containsString(currentWorld -> con[i].name, substring) == 1)
+			{
+				countries[index++] = currentWorld -> con[i];
+			}
+		}
+
+		for (int i = 0; i < index; ++i)
+		{
+			printf("\tname - %s\n",countries[i].name);
+			printf("\tcontinent - %s\n",countries[i].continent);
+			printf("\tpopulation - %lli\n",countries[i].population);
+		}
+	}
+}

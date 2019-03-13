@@ -5,8 +5,8 @@
 
 typedef struct 
 {
-	char name[50];
-	char continent[50];
+	char name[100];
+	char continent[100];
 	long long population;
 }Country;
 
