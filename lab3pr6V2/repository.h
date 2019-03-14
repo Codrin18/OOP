@@ -5,7 +5,7 @@
 #include "domain.h"
 
 
-typedef struct 
+typedef struct
 {
 		Country con[100];
 		int lenght;
@@ -33,7 +33,7 @@ void repositoryAddCountry(world *currentWorld,char name[],char continent[],long 
 	int index = -1;
 	for (int i = 0; i < currentWorld -> lenght; ++i)
 	{
-		if (currentWorld ->con[i].name == name)
+		if (strcmp(currentWorld -> con[i].name, name) == 0)
 		{
 			index = i;
 			break;
@@ -110,7 +110,8 @@ int containsString(char *st1,char *st2)
 
 void repositoryGetAllWhoContain(world *currentWorld,char substring[])
 {
-	if (substring == "")
+
+	if (substring[0] == '\0')
 	{
 		repositoryGetAllCountries(currentWorld);
 	}
