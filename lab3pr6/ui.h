@@ -18,6 +18,7 @@ void uiMigration(ui *worldUi,int index1,int index2,long long nr);
 void uiGetAllWhoContain(ui *worldUI,char sub[]);
 void printMenu();
 int validCommand(int command);
+void populate(ui *worldUI);
 void runApplication();
 
 

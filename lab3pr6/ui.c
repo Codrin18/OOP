@@ -1,9 +1,9 @@
 
-
-#include "ui.h"
 #include "controller.h"
+#include "ui.h"
 #include <stdio.h>
 #include <stdlib.h>
+
 
 void uiInitSetUp(ui **worldUI)
 {
