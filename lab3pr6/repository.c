@@ -1,10 +1,10 @@
 
-
+#include "repository.h"
+#include "domain.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "repository.h"
-#include "domain.h"
+
 
 
 void repositoryInitSetUp(world **currentWorld)

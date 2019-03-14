@@ -1,15 +1,10 @@
 
-
-#include <stdio.h>
-#include <stdlib.h>
 #include "controller.h"
 #include "repository.h"
-typedef struct 
-{
-	
-	world *NewController;
+#include <stdio.h>
+#include <stdlib.h>
 
-}controller;
+
 
 void controllerInitSetUp(controller **worldController)
 {

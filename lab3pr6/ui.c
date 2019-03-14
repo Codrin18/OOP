@@ -1,7 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
+
+
 #include "ui.h"
 #include "controller.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void uiInitSetUp(ui **worldUI)
 {
@@ -161,4 +163,4 @@ void runApplication()
         }
     }
 }
-}
+
