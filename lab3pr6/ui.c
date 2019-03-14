@@ -14,7 +14,7 @@ void uiGetAllCountries(ui *worldUI)
 	controllerGetAllCountries(worldUI -> newUI);
 }
 
-void uiAddCountry(ui *worldUI, char name[],char continent,long long population)
+void uiAddCountry(ui *worldUI, char name[],char continent[],long long population)
 {
 	controllerAddCountry(worldUI -> newUI,name,continent,population);
 }
@@ -34,6 +34,11 @@ void uiMigration(ui *worldUI,int index1,int index2,long long nr)
 	controllerMigration(worldUI -> newUI,index1,index2,nr);
 }
 
+void uiGetAllWhoContain(ui *worldUI,char sub[])
+{
+    controllerGetAllWhoContain(worldUI -> newUI,sub);
+}
+
 void printMenu()
 {
 	printf("Available options\n");
@@ -43,12 +48,28 @@ void printMenu()
 	printf("3. delete an existing country\n");
 	printf("4. update an existing country\n");
 	printf("5. migration towards a country\n");
+    printf("6. get all countries whose name contain a given substring\n");
 }
 
 int validCommand(int command)
 {
-    if (command < 0 || command > 5) return 0;
+    if (command < 0 || command > 6) return 0;
     return 1;
+}
+
+
+void populate(ui *worldUI)
+{
+    controllerAddCountry(worldUI -> newUI,"Romania","Europe",1000000);
+    controllerAddCountry(worldUI -> newUI,"Germania","Europe",2000000);
+    controllerAddCountry(worldUI -> newUI,"Polonia","Europe",3000000);
+    controllerAddCountry(worldUI -> newUI,"Ungaria","Europe",1000000);
+    controllerAddCountry(worldUI -> newUI,"Bulgaria","Europe",1000000);
+    controllerAddCountry(worldUI -> newUI,"Japonia","Asia",5000000);
+    controllerAddCountry(worldUI -> newUI,"Rusia","Asia",2000000);
+    controllerAddCountry(worldUI -> newUI,"SUA","NorthAmerica",1000000);
+    controllerAddCountry(worldUI -> newUI,"Franta","Europe",1000000);
+    controllerAddCountry(worldUI -> newUI,"Spania","Europe",1000000);
 }
 
 void runApplication()
@@ -56,6 +77,7 @@ void runApplication()
 
 	ui *worldUI;
 	uiInitSetUp(&worldUI);
+    populate(worldUI);
 
 	while(1)
     {
@@ -74,7 +96,7 @@ void runApplication()
         {
             case 1:
             {
-            	printf("We are getting all the countries from the repo...\n")
+            	printf("We are getting all the countries from the repo...\n");
             	uiGetAllCountries(worldUI);
             	break;
             }
@@ -85,11 +107,11 @@ void runApplication()
             	char continent[15];
             	long long population;
             	printf("Give a name for the country...\n");
-            	scnaf("%d",name);
+            	scanf("%s",name);
             	printf("Give the continent for the country...\n");
-            	scanf("%d",continent);
+            	scanf("%s",continent);
             	printf("Give the population of the country...\n");
-            	scanf("%d",&population);
+            	scanf("%lli",&population);
             	uiAddCountry(worldUI,name,continent,population);
             	break;
             }
@@ -105,16 +127,16 @@ void runApplication()
             {
             	int index;
             	printf("Give an index for the country you want to update...\n");
-            	scanf("%d",index);
+            	scanf("%d",&index);
             	char name[50];
             	char continent[15];
             	long long population;
             	printf("Give a name for the country...\n");
-            	scnaf("%d",name);
+            	scanf("%s",name);
             	printf("Give the continent for the country...\n");
-            	scanf("%d",continent);
+            	scanf("%s",continent);
             	printf("Give the population of the country...\n");
-            	scanf("%d",&population);
+            	scanf("%lli",&population);
             	uiUpdateCountry(worldUI,index,name,continent,population);
             	break;
             }
@@ -125,10 +147,18 @@ void runApplication()
             	scanf("%d%d",&index1,&index2);
             	long long nr;
             	printf("Please tell how many migrate froma country to another...\n");
-            	scanf("%d",&nr);
+            	scanf("%lli",&nr);
             	uiMigration(worldUI,index1,index2,nr);
             	break;
             }
+            case 6:
+            {
+                char sub[50];
+                printf("Give a substring..\n");
+                scanf("%s",sub);
+                uiGetAllWhoContain(worldUI,sub);
+            }
         }
     }
+}
 }
