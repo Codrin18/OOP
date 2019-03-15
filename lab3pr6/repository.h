@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct 
+typedef struct
 {
 		Country con[100];
 		int lenght;
@@ -20,5 +20,6 @@ void repositoryDeleteCountry(world *currentworld,int index);
 void repositoryUpdateCountry(world *currentworld,int index,char name[],char continent[],long long population);
 void repositoryMigration(world *currentworld,int index1,int index2,long long nr);
 void repositoryGetAllWhoContain(world *currentWorld,char substring[]);
+void repositoryGetAllByContinent(world *currentWorld,char continent[]);
 
 #endif

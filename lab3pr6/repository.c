@@ -131,3 +131,37 @@ void repositoryGetAllWhoContain(world *currentWorld,char substring[])
 	}
 }
 
+void repositoryGetAllByContinent(world *currentWorld,char continent[])
+{
+    Country countries[100];
+    int index = 0;
+    for (int i = 0; i < currentWorld -> lenght; ++i)
+    {
+        if (strcmp(currentWorld -> con[i].continent,continent) == 0)
+        {
+            countries[index++] = currentWorld -> con[i];
+        }
+    }
+
+    for (int i = 0; i < index - 1; ++i)
+    {
+        for (int j = j + 1; j < index; ++j)
+        {
+            if (strcmp(countries[i].name,countries[j].name) > 0)
+            {
+                Country aux = countries[i];
+                countries[i] = countries[j];
+                countries[j] = aux;
+            }
+        }
+    }
+
+
+    for (int i = 0; i < index; ++i)
+    {
+        printf("\tname - %s\n",countries[i].name);
+        printf("\tcontinent - %s\n",countries[i].continent);
+        printf("\tpopulation - %lli\n",countries[i].population);
+    }
+
+}

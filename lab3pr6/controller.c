@@ -43,3 +43,9 @@ void controllerGetAllWhoContain(controller *worldController,char sub[])
 	repositoryGetAllWhoContain(worldController -> NewController,sub);
 }
 
+void controllerGetAllByContinent(controller *worldController,char continent[])
+{
+    repositoryGetAllByContinent(worldController -> NewController,continent);
+}
+
+

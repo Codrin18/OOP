@@ -41,6 +41,11 @@ void uiGetAllWhoContain(ui *worldUI,char sub[])
     controllerGetAllWhoContain(worldUI -> newUI,sub);
 }
 
+void uiGetAllByContinent(ui *worldUI,char continent[])
+{
+    controllerGetAllByContinent(worldUI -> newUI,continent);
+}
+
 void printMenu()
 {
 	printf("Available options\n");
@@ -51,11 +56,12 @@ void printMenu()
 	printf("4. update an existing country\n");
 	printf("5. migration towards a country\n");
     printf("6. get all countries whose name contain a given substring\n");
+    printf("7. get all countries from a continent and sort them\n");
 }
 
 int validCommand(int command)
 {
-    if (command < 0 || command > 6) return 0;
+    if (command < 0 || command > 7) return 0;
     return 1;
 }
 
@@ -159,6 +165,15 @@ void runApplication()
                 printf("Give a substring..\n");
                 scanf("%s",sub);
                 uiGetAllWhoContain(worldUI,sub);
+                break;
+            }
+            case 7:
+            {
+                char continent[50];
+                printf("Give us a continent...\n");
+                scanf("%s",continent);
+                uiGetAllByContinent(worldUI,continent);
+                break;
             }
         }
     }
