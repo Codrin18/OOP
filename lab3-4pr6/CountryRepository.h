@@ -3,7 +3,7 @@
 #include "Country.h"
 
 
-typedef struct 
+typedef struct
 {
 	Country* country[100];
 	int length;
@@ -20,5 +20,6 @@ int migrationCountry(CountryRepo* repo,int index1,int index2,long long nr);
 
 void getContain(CountryRepo* repo, char* substring);
 void getByContinent(CountryRepo* repo,char* continent);
+void getByContinentPopulation(CountryRepo* repo,char* continent,long long nr);
 
 #endif

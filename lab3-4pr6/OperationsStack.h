@@ -11,7 +11,7 @@ Operation* createOperation(Country* c, char* operationType);
 void destroyOperation(Operation* o);
 Operation* copyOperation(Operation* o);
 char* getOperationType(Operation* o);
-Country* getPlanet(Operation* o);
+Country* getCountry(Operation* o);
 
 typedef struct
 {

@@ -3,6 +3,7 @@
 #include <string.h>
 #include "Controller.h"
 
+
 Controller* createController(CountryRepo* repo,OperationsStack* undoStack)
 {
 	Controller* ctrl = (Controller*)malloc(sizeof(Controller));
@@ -67,6 +68,11 @@ void getByContinentController(Controller* ctrl,char* continent)
 	getByContinent(ctrl -> repo,continent);
 }
 
+void getByContinentPopulationController(Controller* ctrl,char* continent,long long nr)
+{
+    getByContinentPopulation(ctrl -> repo,continent,nr);
+}
+
 CountryRepo* findAll(Controller* ctrl)
 {
 	return ctrl -> repo;
@@ -81,4 +87,25 @@ void printAll(Controller* ctrl)
         printf("\tcontinent - %s\n",result -> country[i] -> continent);
         printf("\tpopulation - %lli\n",result -> country[i] -> population);
     }
+}
+
+int undo(Controller* ctrl)
+{
+    if (isEmpty(ctrl -> undoStack))
+    {
+        return 0;
+    }
+
+    Operation* operation = pop(ctrl->undoStack);
+
+    if (strcmp(getOperationType(operation),"add") == 0)
+    {
+        Country* c = getCountry(operation);
+        deleteCountry(ctrl -> repo,ctrl -> repo -> length - 1);
+        ctrl -> repo -> length--;
+    }
+
+    destroyOperation(operation);
+
+    return 1;
 }

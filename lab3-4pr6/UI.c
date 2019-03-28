@@ -48,6 +48,11 @@ void getByContinentUI(UI* ui,char* continent)
 	getByContinentController(ui -> ctrl,continent);
 }
 
+void getByContinentPopulationUI(UI* ui,char* continent,long long nr)
+{
+    getByContinentPopulationController(ui -> ctrl,continent,nr);
+}
+
 void listAll(UI* ui)
 {
 	printAll(ui -> ctrl);
@@ -64,16 +69,44 @@ void printMenu()
 	printf("5. migration towards a country\n");
     printf("6. get all countries whose name contain a given substring\n");
     printf("7. get all countries from a continent and sort them\n");
+    printf("8.get all counties from a given continent whose population is greater than a given value and sort them\n");
+    printf("9.undo the last operation\n");
 }
 
 int validCommand(int command)
 {
-    if (command < 0 || command > 7) return 0;
+    if (command < 0 || command > 9) return 0;
     return 1;
+}
+
+void populate(UI* worldUI)
+{
+    int res;
+
+    res = addCountryController(worldUI -> ctrl,"Romania","Europe",1000000);
+    res = addCountryController(worldUI -> ctrl,"Germania","Europe",2000000);
+    res = addCountryController(worldUI -> ctrl,"Polonia","Europe",3000000);
+    res = addCountryController(worldUI -> ctrl,"Ungaria","Europe",1000000);
+    res = addCountryController(worldUI -> ctrl,"Bulgaria","Europe",1000000);
+    res = addCountryController(worldUI -> ctrl,"Japonia","Asia",5000000);
+    res = addCountryController(worldUI -> ctrl,"Rusia","Asia",2000000);
+    res = addCountryController(worldUI -> ctrl,"SUA","NorthAmerica",1000000);
+    res = addCountryController(worldUI -> ctrl,"Franta","Europe",1000000);
+    res = addCountryController(worldUI -> ctrl,"Spania","Europe",1000000);
+}
+
+void undoUI(UI* ui)
+{
+    int res = undo(ui -> ctrl);
+    if (res == 1)
+        printf("Undo was successful.\n");
+    else
+        printf("No more undos to be made.\n");
 }
 
 void startUI(UI* worldUI)
 {
+    populate(worldUI);
 	while(1)
     {
         printMenu();
@@ -192,6 +225,22 @@ void startUI(UI* worldUI)
                 printf("Give us a continent...\n");
                 scanf("%s",continent);
                 getByContinentUI(worldUI,continent);
+                break;
+            }
+            case 8:
+            {
+                char continent[50];
+                printf("Give us a continent...\n");
+                scanf("%s",continent);
+                long long nr;
+                printf("Give us a value...\n");
+                scanf("%lli",&nr);
+                getByContinentPopulationUI(worldUI,continent,nr);
+                break;
+            }
+            case 9:
+            {
+                undoUI(worldUI);
                 break;
             }
         }

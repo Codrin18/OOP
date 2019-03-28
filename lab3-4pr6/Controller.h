@@ -1,7 +1,7 @@
 #ifndef CONTROLLER
 #define CONTROLLER
 
-#include "CountryRepository.h" 
+#include "CountryRepository.h"
 #include "OperationsStack.h"
 
 typedef struct
@@ -21,8 +21,11 @@ int migrationCountryController(Controller* ctrl,int index1,int index2,long long 
 
 void getContainController(Controller* ctrl,char* substring);
 void getByContinentController(Controller* ctrl,char* continent);
+void getByContinentPopulationController(Controller* ctrl,char* continent,long long nr);
 
 CountryRepo* findAll(Controller* ctrl);
 void printAll(Controller* ctrl);
+
+int undo(Controller* ctrl);
 
 #endif

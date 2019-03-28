@@ -146,3 +146,37 @@ void getByContinent(CountryRepo* repo,char* continent)
         printf("\tpopulation - %lli\n",countries[i] -> population);
     }
 }
+
+void getByContinentPopulation(CountryRepo* repo,char* continent,long long nr)
+{
+    Country* countries[100];
+    int index = 0;
+    for (int i = 0; i < repo -> length; ++i)
+    {
+        if (strcmp(repo -> country[i] -> continent,continent) == 0 && repo -> country[i] -> population > nr)
+        {
+            countries[index++] = repo -> country[i];
+        }
+    }
+
+    for (int i = 0; i < index - 1; ++i)
+    {
+        for (int j = j + 1; j < index; ++j)
+        {
+            if (repo -> country[i] -> population > repo -> country[j] -> population)
+            {
+                Country* aux = countries[i];
+                countries[i] = countries[j];
+                countries[j] = aux;
+            }
+        }
+    }
+
+
+    for (int i = 0; i < index; ++i)
+    {
+        printf("\tname - %s\n",countries[i] -> name);
+        printf("\tcontinent - %s\n",countries[i] -> continent);
+        printf("\tpopulation - %lli\n",countries[i] -> population);
+    }
+}

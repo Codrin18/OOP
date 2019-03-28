@@ -40,7 +40,7 @@ char* getOperationType(Operation* o)
 	return o->operationType;
 }
 
-Country* getPlanet(Operation* o)
+Country* getCountry(Operation* o)
 {
 	return o->country;
 }
