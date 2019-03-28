@@ -19,6 +19,18 @@ void destroyRepo(CountryRepo* repo)
 }
 
 
+int findCountry(CountryRepo* repo,char* name)
+{
+    for (int i = 0 ; i < repo -> length; ++i)
+    {
+        if (strcmp(repo -> country[i] -> name,name) == 0)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
 int addCountry(Country* c,CountryRepo* repo)
 {
 	int index = -1;
@@ -39,34 +51,45 @@ int addCountry(Country* c,CountryRepo* repo)
 	else return 0;
 }
 
-int deleteCountry(CountryRepo* repo,int index)
+void deleteCountry(CountryRepo* repo,char* name)
 {
-	if (index < 0 || index >= repo -> length)
-	{
-		return 0;
-	}
-	else
-	{
-		while(index < repo -> length)
-		{
-			repo -> country[index] = repo -> country[index+1];
-			++index;
-		}
-		return 1;
-	}
+    int index = -1;
+    for (int i = 0; i < repo -> length; ++i)
+    {
+        if (strcmp(repo -> country[i] -> name,name) == 0)
+        {
+            index = i;
+            break;
+        }
+    }
+
+    if (index == -1)
+        return;
+
+    destroyCountry(repo -> country[index]);
+
+    while(index < repo -> length - 1)
+    {
+        repo -> country[index] = repo -> country[index+1];
+        ++index;
+    }
+    repo -> length--;
+
 }
 
-int updateCountry(Country* c,CountryRepo* repo,int index)
+int updateCountry(Country* c,CountryRepo* repo)
 {
-	if (index < 0 || index >= repo -> length)
-	{
-		return 0;
-	}
-	else
-	{
-		repo -> country[index] = copyCountry(c);
-		return 1;
-	}
+
+    for (int i = 0; i < repo -> length; ++i)
+    {
+        if (strcmp(repo -> country[i] -> name, getName(c)) == 0)
+        {
+            repo -> country[i] = copyCountry(c);
+            return 1;
+        }
+    }
+    return 0;
+
 }
 
 int migrationCountry(CountryRepo* repo,int index1,int index2,long long nr)
@@ -171,7 +194,6 @@ void getByContinentPopulation(CountryRepo* repo,char* continent,long long nr)
             }
         }
     }
-
 
     for (int i = 0; i < index; ++i)
     {

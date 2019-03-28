@@ -39,17 +39,27 @@ int addCountryController(Controller* ctrl,char* name,char* continent,long long p
 
 }
 
-int deleteCountryController(Controller* ctrl,int index)
+void deleteCountryController(Controller* ctrl,char* name)
 {
-	int res = deleteCountry(ctrl -> repo,index);
-	return res;
+	deleteCountry(ctrl -> repo,name);
 }
 
-int updateCountryController(Controller* ctrl,int index,char* name,char* continent,long long population)
+int updateCountryController(Controller* ctrl,char* name,char* continent,long long population)
 {
+    int pos = findCountry(ctrl -> repo,name);
+    Country* a = copyCountry(ctrl -> repo -> country[pos]);
 	Country* c = createCountry(name,continent,population);
-	int res = updateCountry(c,ctrl -> repo,index);
-	return res;
+	int res = updateCountry(c,ctrl -> repo);
+    if (res == 1)
+    {
+        Operation* o = createOperation(a,"update");
+        push(ctrl->undoStack,o);
+        destroyOperation(o);
+    }
+
+    destroyCountry(c);
+
+    return res;
 }
 
 int migrationCountryController(Controller* ctrl,int index1,int index2,long long nr)
@@ -101,8 +111,19 @@ int undo(Controller* ctrl)
     if (strcmp(getOperationType(operation),"add") == 0)
     {
         Country* c = getCountry(operation);
-        deleteCountry(ctrl -> repo,ctrl -> repo -> length - 1);
-        ctrl -> repo -> length--;
+        char name[50];
+        strcpy(name,getName(c));
+        deleteCountry(ctrl -> repo,name);
+    }
+    else if (strcmp(getOperationType(operation),"remove") == 0)
+    {
+        Country* c = getCountry(operation);
+        addCountry(c,ctrl -> repo);
+    }
+    else if (strcmp(getOperationType(operation),"update") == 0)
+    {
+        Country* c = getCountry(operation);
+        updateCountry(c,ctrl -> repo);
     }
 
     destroyOperation(operation);

@@ -23,14 +23,14 @@ int addCountryUI(UI* ui,char* name,char* continent,long long population)
 	return addCountryController(ui -> ctrl,name,continent,population);
 }
 
-int deleteCountryUI(UI* ui,int index)
+void deleteCountryUI(UI* ui,char* name)
 {
-	return deleteCountryController(ui -> ctrl,index);
+	deleteCountryController(ui -> ctrl,name);
 }
 
-int updateCountryUI(UI* ui,int index,char* name,char* continent,long long population)
+int updateCountryUI(UI* ui,char* name,char* continent,long long population)
 {
-	return updateCountryController(ui -> ctrl,index,name,continent,population);
+	return updateCountryController(ui -> ctrl,name,continent,population);
 }
 
 int migrationCountryUI(UI* ui,int index1,int index2,long long nr)
@@ -153,25 +153,14 @@ void startUI(UI* worldUI)
             }
             case 3:
             {
-            	int index;
-            	printf("Give an index for the country you want to delete...\n");
-            	scanf("%d",&index);
-            	int res = deleteCountryUI(worldUI,index);
-            	if (res == 1)
-            	{
-            		printf("The country was deleted...");
-            	}
-            	else
-            	{
-            		printf("Index out of range...");
-            	}
+            	char name[50];
+            	printf("Give a name for the country you want to delete...\n");
+            	scanf("%s",name);
+            	deleteCountryUI(worldUI,name);
             	break;
             }
             case 4:
             {
-            	int index;
-            	printf("Give an index for the country you want to update...\n");
-            	scanf("%d",&index);
             	char name[50];
             	char continent[15];
             	long long population;
@@ -181,7 +170,7 @@ void startUI(UI* worldUI)
             	scanf("%s",continent);
             	printf("Give the population of the country...\n");
             	scanf("%lli",&population);
-            	int res = updateCountryUI(worldUI,index,name,continent,population);
+            	int res = updateCountryUI(worldUI,name,continent,population);
             	if (res == 1)
             	{
             		printf("The country was updated...");

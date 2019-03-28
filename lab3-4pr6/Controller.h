@@ -14,9 +14,9 @@ Controller* createController(CountryRepo* repo,OperationsStack* undoStack);
 void destroyController(Controller* ctrl);
 
 int addCountryController(Controller* ctrl,char* name,char* continent,long long population);
-int deleteCountryController(Controller* ctrl,int index);
+void deleteCountryController(Controller* ctrl,char* name);
 
-int updateCountryController(Controller* ctrl,int index,char* name,char* continent,long long population);
+int updateCountryController(Controller* ctrl,char* name,char* continent,long long population);
 int migrationCountryController(Controller* ctrl,int index1,int index2,long long nr);
 
 void getContainController(Controller* ctrl,char* substring);
