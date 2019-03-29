@@ -2,8 +2,8 @@
 
 typedef struct
 {
-	Controller* ctrl; 
-} UI;
+	Controller* ctrl;
+}UI;
 
 UI* createUI(Controller* ctrl);
 void destroyUI(UI* ui);

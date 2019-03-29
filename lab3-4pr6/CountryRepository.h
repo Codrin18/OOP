@@ -73,7 +73,8 @@ INPUT:a variable of type COuntryREPO,two variables of type integer,a long long v
 OUTPUT:1 if the migration was succesfull,0 - otherwise
 -----------------------------------------------------------------------------------
 */
-int migrationCountry(CountryRepo* repo,int index1,int index2,long long nr)
+int migrationCountry(CountryRepo* repo,int index1,int index2,long long nr);
+
 /*
 -----------------------------------------------------------------------------------
 This function gets all the countries who have in their name a given substring
