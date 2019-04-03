@@ -40,17 +40,40 @@ int migrationCountryUI(UI* ui,int index1,int index2,long long nr)
 
 void getContainUI(UI* ui,char* substring)
 {
-	getContainController(ui -> ctrl,substring);
+	CountryRepo result = getContainController(ui -> ctrl,substring);
+
+    for (int i = 0; i < result.length; ++i)
+    {
+        printf("\tname - %s\n",result.country[i] -> name);
+        printf("\tcontinent - %s\n",result.country[i] -> continent);
+        printf("\tpopulation - %lli\n",result.country[i] -> population);
+    }
 }
 
 void getByContinentUI(UI* ui,char* continent)
 {
-	getByContinentController(ui -> ctrl,continent);
+	CountryRepo result = getByContinentController(ui -> ctrl,continent);
+
+    for (int i = 0; i < result.length; ++i)
+    {
+        printf("\tname - %s\n",result.country[i] -> name);
+        printf("\tcontinent - %s\n",result.country[i] -> continent);
+        printf("\tpopulation - %lli\n",result.country[i] -> population);
+    }
 }
 
 void getByContinentPopulationUI(UI* ui,char* continent,long long nr)
 {
-    getByContinentPopulationController(ui -> ctrl,continent,nr);
+
+    CountryRepo result = getByContinentPopulationController(ui -> ctrl,continent,nr);
+
+    for (int i = 0; i < result.length; ++i)
+    {
+        printf("\tname - %s\n",result.country[i] -> name);
+        printf("\tcontinent - %s\n",result.country[i] -> continent);
+        printf("\tpopulation - %lli\n",result.country[i] -> population);
+    }
+
 }
 
 void listAll(UI* ui)

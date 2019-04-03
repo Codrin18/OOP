@@ -2,6 +2,9 @@
 #define REPOSITORY
 #include "Country.h"
 
+
+/* Trebuie sa scapi de printf din repository,adauga teste,fa redo
+
 /*
 -----------------------------------------------------
 A typedef  of type CountryRepo is defined  by two properties:
@@ -74,7 +77,6 @@ OUTPUT:1 if the migration was succesfull,0 - otherwise
 -----------------------------------------------------------------------------------
 */
 int migrationCountry(CountryRepo* repo,int index1,int index2,long long nr);
-
 /*
 -----------------------------------------------------------------------------------
 This function gets all the countries who have in their name a given substring
@@ -82,7 +84,7 @@ INPUT:a variable of type CountryREpo,a variable of type char
 OUTPUT:----
 -----------------------------------------------------------------------------------
 */
-void getContain(CountryRepo* repo, char* substring);
+CountryRepo getContain(CountryRepo* repo, char* substring);
 /*
 -----------------------------------------------------------------------------------
 This function gets all countries from a certain continent and sorts them by name
@@ -90,7 +92,7 @@ INPUT:a variable of CountryRepo,a variable of type char
 OUTPUT:-----
 -----------------------------------------------------------------------------------
 */
-void getByContinent(CountryRepo* repo,char* continent);
+CountryRepo getByContinent(CountryRepo* repo,char* continent);
 
 /*
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -99,8 +101,8 @@ INPUT:a variable of type CountryRepo,a variable of type char,a variable of type 
 OUTPUT:-----
 --------------------------------------------------------------------------------------------------------------------------------------
 */
-void getByContinentPopulation(CountryRepo* repo,char* continent,long long nr);
+CountryRepo getByContinentPopulation(CountryRepo* repo,char* continent,long long nr);
 
-
+void testCountryRepo();
 
 #endif

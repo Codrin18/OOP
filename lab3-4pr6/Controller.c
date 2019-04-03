@@ -68,19 +68,19 @@ int migrationCountryController(Controller* ctrl,int index1,int index2,long long 
 	return res;
 }
 
-void getContainController(Controller* ctrl,char* substring)
+CountryRepo getContainController(Controller* ctrl,char* substring)
 {
-	getContain(ctrl -> repo,substring);
+	return getContain(ctrl -> repo,substring);
 }
 
-void getByContinentController(Controller* ctrl,char* continent)
+CountryRepo getByContinentController(Controller* ctrl,char* continent)
 {
-	getByContinent(ctrl -> repo,continent);
+	return getByContinent(ctrl -> repo,continent);
 }
 
-void getByContinentPopulationController(Controller* ctrl,char* continent,long long nr)
+CountryRepo getByContinentPopulationController(Controller* ctrl,char* continent,long long nr)
 {
-    getByContinentPopulation(ctrl -> repo,continent,nr);
+    return getByContinentPopulation(ctrl -> repo,continent,nr);
 }
 
 CountryRepo* findAll(Controller* ctrl)

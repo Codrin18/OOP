@@ -4,6 +4,7 @@
 
 int main()
 {
+    testCountryRepo();
 	CountryRepo* repo = createRepo();
 	OperationsStack* s = createStack();
 	Controller* ctrl = createController(repo, s);

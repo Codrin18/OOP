@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "CountryRepository.h"
+#include <assert.h>
 
 CountryRepo* createRepo()
 {
@@ -116,7 +117,7 @@ int containsString(char* st1,char* st2)
 	return 1;
 }
 
-void getContain(CountryRepo* repo,char* substring)
+CountryRepo getContain(CountryRepo* repo,char* substring)
 {
 	Country* countries[100];
 	int index = 0;
@@ -128,15 +129,19 @@ void getContain(CountryRepo* repo,char* substring)
 		}
 	}
 
-	for (int i = 0; i < index; ++i)
-	{
-		printf("\tname - %s\n",countries[i] -> name);
-		printf("\tcontinent - %s\n",countries[i] -> continent);
-		printf("\tpopulation - %lli\n",countries[i] -> population);
-	}
+    CountryRepo result;
+
+    for (int i = 0; i < index; ++i)
+    {
+        result.country[i] = countries[i];
+    }
+
+    result.length = index;
+
+    return result;
 }
 
-void getByContinent(CountryRepo* repo,char* continent)
+CountryRepo getByContinent(CountryRepo* repo,char* continent)
 {
 	Country* countries[100];
     int index = 0;
@@ -161,16 +166,20 @@ void getByContinent(CountryRepo* repo,char* continent)
         }
     }
 
+    CountryRepo result;
 
     for (int i = 0; i < index; ++i)
     {
-        printf("\tname - %s\n",countries[i] -> name);
-        printf("\tcontinent - %s\n",countries[i] -> continent);
-        printf("\tpopulation - %lli\n",countries[i] -> population);
+        result.country[i] = countries[i];
     }
+
+    result.length = index;
+
+    return result;
+
 }
 
-void getByContinentPopulation(CountryRepo* repo,char* continent,long long nr)
+CountryRepo getByContinentPopulation(CountryRepo* repo,char* continent,long long nr)
 {
     Country* countries[100];
     int index = 0;
@@ -195,10 +204,58 @@ void getByContinentPopulation(CountryRepo* repo,char* continent,long long nr)
         }
     }
 
+    CountryRepo result;
+
     for (int i = 0; i < index; ++i)
     {
-        printf("\tname - %s\n",countries[i] -> name);
-        printf("\tcontinent - %s\n",countries[i] -> continent);
-        printf("\tpopulation - %lli\n",countries[i] -> population);
+        result.country[i] = countries[i];
     }
+
+    result.length = index;
+
+    return result;
+}
+
+//------------------------------Test functions ------------------------------------
+
+
+void test_Unique_CountryOK()
+{
+    CountryRepo* repo = createRepo();
+    Country* c = createCountry("Romania","Europe",100);
+
+    int res = addCountry(c,repo);
+
+    assert( res == 1);
+    assert(repo -> length == 1);
+}
+
+void testAdd_DuplicateCountry()
+{
+    CountryRepo* repo = createRepo();
+    Country* c1 = createCountry("Romania","Europe",100);
+    Country* c2 = createCountry("Romania","Europe",100000);
+
+    int a = addCountry(c1,repo);
+
+    int res = addCountry(c2,repo);
+
+    assert(res == 0);
+}
+void testUpdate_CountryOK()
+{
+    CountryRepo* repo = createRepo();
+    Country* c = createCountry("Romania","Europe",100);
+    Country* c2 = createCountry("Romania","Europe",100000);
+    int a = addCountry(c,repo);
+    int res = updateCountry(c2,repo);
+
+    assert(res == 1);
+}
+
+void testCountryRepo()
+{
+    testUpdate_CountryOK();
+    test_Unique_CountryOK();
+    testAdd_DuplicateCountry();
 }
