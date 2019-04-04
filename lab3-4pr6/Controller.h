@@ -27,5 +27,6 @@ CountryRepo* findAll(Controller* ctrl);
 void printAll(Controller* ctrl);
 
 int undo(Controller* ctrl);
+int redo(Controller* ctrl,Country* c);
 
 #endif

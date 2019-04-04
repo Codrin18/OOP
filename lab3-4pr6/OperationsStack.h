@@ -23,5 +23,6 @@ OperationsStack* createStack();
 void destroyStack(OperationsStack* s);
 void push(OperationsStack* s, Operation* o);
 Operation* pop(OperationsStack* s);
+Operation* add(OperationsStack* s);
 int isEmpty(OperationsStack* s);
 int isFull(OperationsStack* s);

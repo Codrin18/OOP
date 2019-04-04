@@ -94,11 +94,12 @@ void printMenu()
     printf("7. get all countries from a continent and sort them\n");
     printf("8.get all counties from a given continent whose population is greater than a given value and sort them\n");
     printf("9.undo the last operation\n");
+    printf("10. redo the last operation\n");
 }
 
 int validCommand(int command)
 {
-    if (command < 0 || command > 9) return 0;
+    if (command < 0 || command > 10) return 0;
     return 1;
 }
 
@@ -125,6 +126,16 @@ void undoUI(UI* ui)
         printf("Undo was successful.\n");
     else
         printf("No more undos to be made.\n");
+}
+
+void redoUI(UI* ui,Country* c)
+{
+    int res = redo(ui -> ctrl,c);
+
+    if (res == 1)
+        printf("Redo was successful...\n");
+    else
+        printf("No more redos to be made...\n");
 }
 
 void startUI(UI* worldUI)
@@ -253,6 +264,21 @@ void startUI(UI* worldUI)
             case 9:
             {
                 undoUI(worldUI);
+                break;
+            }
+            case 10:
+            {
+                char name[50];
+                printf("Give us name of the country...\n");
+                scanf("%s",name);
+                char continent[50];
+                printf("Give us a continent\n");
+                scanf("%s",continent);
+                long long nr;
+                printf("Give us population\n");
+                scanf("%lli",&nr);
+                Country* c = createCountry(name,continent,nr);
+                redoUI(worldUI,c);
                 break;
             }
         }

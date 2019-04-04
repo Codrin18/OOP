@@ -82,6 +82,14 @@ Operation* pop(OperationsStack* s)
 	return s->operasions[s->length];
 }
 
+Operation* add(OperationsStack* s)
+{
+    if (isEmpty(s))
+        return NULL;
+    s -> length++;
+    return s->operasions[s->length];
+}
+
 int isEmpty(OperationsStack* s)
 {
 	return (s->length == 0);

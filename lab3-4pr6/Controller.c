@@ -101,7 +101,7 @@ void printAll(Controller* ctrl)
 
 int undo(Controller* ctrl)
 {
-    if (isEmpty(ctrl -> undoStack))
+    if (isEmpty(ctrl -> undoStack) == 0)
     {
         return 0;
     }
@@ -126,6 +126,28 @@ int undo(Controller* ctrl)
         updateCountry(c,ctrl -> repo);
     }
 
+    destroyOperation(operation);
+
+    return 1;
+}
+
+int redo(Controller* ctrl,Country* c)
+{
+    if (isEmpty(ctrl -> undoStack) == 0)
+    {
+        return 0;
+    }
+
+    Operation* operation = pop(ctrl -> undoStack);
+
+    if (strcmp(getOperationType(operation),"add") == 0)
+    {
+        addCountry(c,ctrl -> repo);
+    }
+    else if (strcmp(getOperationType(operation),"update") == 0)
+    {
+        updateCountry(c,ctrl -> repo);
+    }
     destroyOperation(operation);
 
     return 1;
