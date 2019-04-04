@@ -42,12 +42,55 @@ DynamicVector& DynamicVector::operator=(const DynamicVector& v)
 }
 
 
-void DynamicVector::add(const TElem& e)
+int DynamicVector::add(const TElem& e)
 {
     if (this -> size == this -> capacity)
         this -> resize();
 
+    int index = -1;
+    for (int i = 0; i < this -> size; ++i)
+    {
+        if (this -> elems[i].getLink() == e.getLink())
+        {
+            index = i;
+            break;
+        }
+    }
+    if (index > -1)
+    {
+        return 0;
+    }
+
     this -> elems[this->size++] = e;
+
+    return 1;
+}
+
+int DynamicVector::del(const TElem& e)
+{
+    int index = -1;
+    for (int i = 0; i < this -> size; ++i)
+    {
+        if (this -> elems[i].getLink() == e.getLink())
+        {
+            index = i;
+            break;
+        }
+    }
+
+    if (index == -1)
+        return 0;
+
+
+    while(index < this -> size - 1)
+    {
+        this -> elems[index] = this -> elems[index + 1];
+        ++index;
+    }
+
+    this -> size--;
+
+    return 1;
 }
 
 void DynamicVector::resize(double factor)

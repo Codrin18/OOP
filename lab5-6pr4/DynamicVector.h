@@ -1,6 +1,7 @@
 #pragma once
 
 #include "tutorial.h"
+#include <string>
 
 typedef Tutorial TElem;
 
@@ -20,7 +21,9 @@ class DynamicVector
 
         DynamicVector& operator=(const DynamicVector& v);
 
-        void add(const TElem& e);
+        int add(const TElem& e);
+        int del(const TElem& e);
+        void update(const TElem& e);
 
         int getSize() const;
         TElem* getAllElems() const;

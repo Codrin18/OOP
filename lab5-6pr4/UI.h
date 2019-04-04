@@ -17,5 +17,6 @@ class UI
         static void printRepositoryMenu();
 
         void addTutorialToRepo();
+        void delTutorialRepo();
         void displayAllTutorialRepo();
 };

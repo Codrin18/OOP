@@ -13,7 +13,9 @@ class Repository
 
         Repository(){}
 
-        void add(const Tutorial& tutorial);
+        int add(const Tutorial& tutorial);
+        int del(const Tutorial& tutorial);
+        int update(const Tutorial& tutorial);
 
         DynamicVector getTutorials() const
         {
