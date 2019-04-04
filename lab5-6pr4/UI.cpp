@@ -19,6 +19,7 @@ void UI::printRepositoryMenu()
     cout << "1 Add tutorial" << endl;
     cout << "2 List all tutorials" << endl;
     cout << "3 Delete a tutorial" << endl;
+    cout << "4 Update a tutorial" << endl;
     cout << "0 Return " << endl;
 }
 
@@ -121,6 +122,55 @@ void UI::delTutorialRepo()
     else cout << "The tutorial you want to delete does not exists..." <<endl;
 }
 
+void UI::updateTutorialRepo()
+{
+    cout << "Enter the title: ";
+
+    string title;
+
+    getline(cin,title);
+
+    cout << "Enter the presenter: ";
+
+    string presenter;
+
+    getline(cin,presenter);
+
+    cout << "Enter the minutes: ";
+
+    double minutes = 0;
+
+    cin >> minutes;
+
+    cout << "Enter the seconds: ";
+
+    double seconds = 0;
+
+    cin >> seconds;
+
+    cout << "Enter the number of likes: ";
+
+    long long likes;
+
+    cin >> likes;
+
+    cin.ignore();
+
+    cout << "Enter the link: ";
+
+    string link;
+
+    getline(cin,link);
+
+    int res = this -> ctrl.updateTutorialRepo(title,presenter,minutes,seconds,likes,link);
+
+    if (res == 1)
+    {
+        cout << "The information about the tutorial were updated..." << endl;
+    }
+    else cout << "The tutorial does not exists..." << endl;
+}
+
 void UI::displayAllTutorialRepo()
 {
     DynamicVector v = this -> ctrl.getRepo().getTutorials();
@@ -194,6 +244,11 @@ void UI::run()
                     case 3:
                     {
                         this -> delTutorialRepo();
+                        break;
+                    }
+                    case 4:
+                    {
+                        this -> updateTutorialRepo();
                         break;
                     }
                 }

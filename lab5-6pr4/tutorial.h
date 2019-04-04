@@ -63,4 +63,26 @@ class Tutorial
         {
             return link;
         }
+        void setTitle(const string& _title)
+        {
+            title = _title;
+        }
+        void setPresenter(const string& _presenter)
+        {
+            presenter = _presenter;
+        }
+        void setDuration(const Duration& _duration)
+        {
+            duration.setMinutes(_duration.getMinutes());
+            duration.setSeconds(_duration.getSeconds());
+        }
+        void setLikes(const long long& _likes)
+        {
+            likes = _likes;
+        }
+
+        void setLink(const string& _link)
+        {
+            link = _link;
+        }
 };

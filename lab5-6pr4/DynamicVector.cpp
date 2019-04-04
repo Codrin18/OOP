@@ -93,6 +93,29 @@ int DynamicVector::del(const TElem& e)
     return 1;
 }
 
+int DynamicVector::update(const TElem& e)
+{
+    int index = -1;
+    for (int i = 0; i < this -> size; ++i)
+    {
+        if (this -> elems[i].getLink() == e.getLink())
+        {
+            index = i;
+            break;
+        }
+    }
+
+    if (index == -1)
+        return 0;
+
+    this -> elems[index].setTitle(e.getTitle());
+    this -> elems[index].setPresenter(e.getPresenter());
+    this -> elems[index].setDuration(e.getDuration());
+    this -> elems[index].setLikes(e.getLikes());
+
+    return 1;
+}
+
 void DynamicVector::resize(double factor)
 {
     this->capacity *= static_cast <int> (factor);

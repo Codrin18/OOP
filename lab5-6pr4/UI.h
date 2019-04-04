@@ -18,5 +18,6 @@ class UI
 
         void addTutorialToRepo();
         void delTutorialRepo();
+        void updateTutorialRepo();
         void displayAllTutorialRepo();
 };

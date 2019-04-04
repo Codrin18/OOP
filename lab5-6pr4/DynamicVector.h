@@ -23,7 +23,7 @@ class DynamicVector
 
         int add(const TElem& e);
         int del(const TElem& e);
-        void update(const TElem& e);
+        int update(const TElem& e);
 
         int getSize() const;
         TElem* getAllElems() const;
