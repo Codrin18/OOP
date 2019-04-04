@@ -39,9 +39,21 @@ int addCountryController(Controller* ctrl,char* name,char* continent,long long p
 
 }
 
-void deleteCountryController(Controller* ctrl,char* name)
+int deleteCountryController(Controller* ctrl,char* name)
 {
-	deleteCountry(ctrl -> repo,name);
+    int pos = findCountry(ctrl -> repo,name);
+    Country* c = copyCountry(ctrl -> repo -> country[pos]);
+    int res = deleteCountry(ctrl -> repo,name);
+
+    if (res == 1)
+    {
+        Operation* o = createOperation(c,"remove");
+        push(ctrl -> undoStack,o);
+        destroyOperation(o);
+    }
+    destroyCountry(c);
+
+    return res;
 }
 
 int updateCountryController(Controller* ctrl,char* name,char* continent,long long population)
@@ -101,7 +113,7 @@ void printAll(Controller* ctrl)
 
 int undo(Controller* ctrl)
 {
-    if (isEmpty(ctrl -> undoStack) == 0)
+    if (isEmpty(ctrl -> undoStack) < 0)
     {
         return 0;
     }
@@ -133,7 +145,7 @@ int undo(Controller* ctrl)
 
 int redo(Controller* ctrl,Country* c)
 {
-    if (isEmpty(ctrl -> undoStack) == 0)
+    if (isEmpty(ctrl -> undoStack) < 0)
     {
         return 0;
     }

@@ -51,7 +51,7 @@ INPUT:A variable of type CoiuntryRepo,a variable of type char
 OUTPUT:-----
 ---------------------------------------------------------------
 */
-void deleteCountry(CountryRepo* repo,char* name);
+int deleteCountry(CountryRepo* repo,char* name);
 
 /*
 --------------------------------------------------------------------------------

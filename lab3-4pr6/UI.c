@@ -23,9 +23,9 @@ int addCountryUI(UI* ui,char* name,char* continent,long long population)
 	return addCountryController(ui -> ctrl,name,continent,population);
 }
 
-void deleteCountryUI(UI* ui,char* name)
+int deleteCountryUI(UI* ui,char* name)
 {
-	deleteCountryController(ui -> ctrl,name);
+	return deleteCountryController(ui -> ctrl,name);
 }
 
 int updateCountryUI(UI* ui,char* name,char* continent,long long population)
@@ -190,7 +190,7 @@ void startUI(UI* worldUI)
             	char name[50];
             	printf("Give a name for the country you want to delete...\n");
             	scanf("%s",name);
-            	deleteCountryUI(worldUI,name);
+            	int res = deleteCountryUI(worldUI,name);
             	break;
             }
             case 4:

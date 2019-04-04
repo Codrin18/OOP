@@ -52,7 +52,7 @@ int addCountry(Country* c,CountryRepo* repo)
 	else return 0;
 }
 
-void deleteCountry(CountryRepo* repo,char* name)
+int deleteCountry(CountryRepo* repo,char* name)
 {
     int index = -1;
     for (int i = 0; i < repo -> length; ++i)
@@ -65,7 +65,7 @@ void deleteCountry(CountryRepo* repo,char* name)
     }
 
     if (index == -1)
-        return;
+        return 0;
 
     destroyCountry(repo -> country[index]);
 
@@ -76,6 +76,7 @@ void deleteCountry(CountryRepo* repo,char* name)
     }
     repo -> length--;
 
+    return 1;
 }
 
 int updateCountry(Country* c,CountryRepo* repo)
