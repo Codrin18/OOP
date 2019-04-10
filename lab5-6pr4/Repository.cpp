@@ -1,8 +1,10 @@
 #include "Repository.h"
 
-int Repository::add(const Tutorial& tutorial)
+void Repository::add(const Tutorial& tutorial)
 {
-   return this -> tutorials.add(tutorial);
+   //this -> tutorials = tutorials + tutorial;
+   //this -> tutorials.add(tutorial);
+   this -> tutorials = tutorial + tutorials;
 }
 
 int Repository::del(const Tutorial& tutorial)

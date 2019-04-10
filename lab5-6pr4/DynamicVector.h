@@ -21,7 +21,7 @@ class DynamicVector
 
         DynamicVector& operator=(const DynamicVector& v);
 
-        int add(const TElem& e);
+        void add(const TElem& e);
         int del(const TElem& e);
         int update(const TElem& e);
 
@@ -32,3 +32,6 @@ class DynamicVector
 
         void resize(double factor = 2);
 };
+
+DynamicVector operator+(const DynamicVector& v,const TElem& e);
+DynamicVector operator+(const TElem& e,const DynamicVector& v);

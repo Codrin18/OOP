@@ -13,7 +13,7 @@ class Repository
 
         Repository(){}
 
-        int add(const Tutorial& tutorial);
+        void add(const Tutorial& tutorial);
         int del(const Tutorial& tutorial);
         int update(const Tutorial& tutorial);
 

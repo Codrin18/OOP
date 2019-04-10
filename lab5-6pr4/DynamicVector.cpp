@@ -41,8 +41,21 @@ DynamicVector& DynamicVector::operator=(const DynamicVector& v)
     return *this;
 }
 
+DynamicVector operator+(const DynamicVector& v,const TElem& e)
+{
+    DynamicVector res = v;
 
-int DynamicVector::add(const TElem& e)
+    res.add(e);
+
+    return res;
+}
+
+DynamicVector operator+(const TElem& e,const DynamicVector& v)
+{
+    return v + e;
+}
+
+void DynamicVector::add(const TElem& e)
 {
     if (this -> size == this -> capacity)
         this -> resize();
@@ -58,12 +71,10 @@ int DynamicVector::add(const TElem& e)
     }
     if (index > -1)
     {
-        return 0;
+        return;
     }
 
     this -> elems[this->size++] = e;
-
-    return 1;
 }
 
 int DynamicVector::del(const TElem& e)

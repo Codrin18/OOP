@@ -14,7 +14,7 @@ class Controller
 
         Repository getRepo()const { return this->repo; }
 
-        int addTutorialToRepo(const string& title,const string& presenter,const double minutes,const double seconds,const long long& likes,const string& link);
+        void addTutorialToRepo(const string& title,const string& presenter,const double minutes,const double seconds,const long long& likes,const string& link);
         int delTutorialRepo(const string& title,const string& presenter,const double minutes,const double seconds,const long long& likes,const string& link);
         int updateTutorialRepo(const string& title,const string& presenter,const double minutes,const double seconds,const long long& likes,const string& link);
 

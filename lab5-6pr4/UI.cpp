@@ -64,13 +64,8 @@ void UI::addTutorialToRepo()
 
     cin >> link;
 
-    int res = this -> ctrl.addTutorialToRepo(title,presenter,minutes,seconds,likes,link);
+    this -> ctrl.addTutorialToRepo(title,presenter,minutes,seconds,likes,link);
 
-    if (res == 1)
-    {
-        cout << "The tutorial was added..." << endl;
-    }
-    else cout << "The tutorial exists already..." <<endl;
 }
 
 void UI::delTutorialRepo()
