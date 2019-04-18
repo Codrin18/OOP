@@ -26,6 +26,8 @@ public:
 	Output:1 - if the update was succesfull, 0 - otherwise
 	*/
 	int update(const Tutorial& tutorial);
+	//This function increases the number of likes 
+	void updateLikes(const Tutorial& tutorial);
 	//Returns all the elements from repository
 	DynamicVector<Tutorial> getTutorials() const
 	{

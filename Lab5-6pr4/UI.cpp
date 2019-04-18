@@ -25,10 +25,33 @@ void UI::printRepositoryMenu()
 void UI::printPlaylistMenu()
 {
 	cout << endl;
-	cout << "1 Add tutorial to playlist" << endl;
-	cout << "2 Start playlist" << endl;
-	cout << "3 Next" << endl;
+	cout << "1 Add tutorial to playlist and create my watchlist" << endl;
+	cout << "2 Delete a tutorial from my watchlist " << endl;
+	cout << "3 See watchlist" << endl;
 	cout << "0 Return" << endl;
+}
+
+void UI::deleteWatchList()
+{
+	DynamicVector<Tutorial> tutorials = this->ctrl.getWatchlist();
+	for (int i = tutorials.getSize() - 1; i >= 0; i--)
+	{
+		Tutorial t = tutorials[i];
+		Duration d = t.getDuration();
+
+		cout << t.getTitle() << "-" << t.getPresenter() << "-" << d.getMinutes() << "-" << d.getSeconds() << "-" << t.getLikes() << "-" << t.getLink() << endl;
+		cout << "Did you see this tutorial? Please answer with y for yes and n for no..." << endl;
+		string answer;
+		cin >> answer;
+		if (answer == "y")
+		{
+			this->ctrl.deleteWatchlist(i);
+			cout << "Do you want to give it a like ? Please answer with y for yes and n for no..." << endl;
+			string answer;
+			cin >> answer;
+			if (answer == "y") this->ctrl.updateLikesTutorialRepo(tutorials[i]);
+		}
+	}
 }
 
 void UI::addTutorialToRepo()
@@ -176,6 +199,11 @@ void UI::updateTutorialRepo()
 	else cout << "The tutorial does not exists..." << endl;
 }
 
+void UI::updateLikesTutorialRepo(const Tutorial& tutorial)
+{
+	this->ctrl.updateLikesTutorialRepo(tutorial);
+}
+
 void UI::displayAllTutorialRepo()
 {
 	DynamicVector<Tutorial> v = this->ctrl.getRepo().getTutorials();
@@ -201,6 +229,19 @@ void UI::displayAllTutorialRepo()
 
 }
 
+void UI::displayWatchlist()
+{
+	DynamicVector<Tutorial> tutorials = this->ctrl.getWatchlist();
+
+	for (int i = 0; i < tutorials.getSize(); ++i)
+	{
+		Tutorial t = tutorials[i];
+		Duration d = t.getDuration();
+
+		cout << t.getTitle() << "-" << t.getPresenter() << "-" << d.getMinutes() << "-" << d.getSeconds() << "-" << t.getLikes() << "-" << t.getLink() << endl;
+	}
+}
+
 void UI::addTutorialToPlaylist()
 {
 	cout << "Enter the presenter: ";
@@ -208,6 +249,30 @@ void UI::addTutorialToPlaylist()
 	getline(cin, presenter);
 
 	this->ctrl.addTutorialByPresenterToPlaylist(presenter);
+	
+	Playlist p = this->ctrl.getPlaylist();
+	startPlayTutorials();
+
+	while (true)
+	{
+		Tutorial  t = p.getCurrentTutorial();
+		Duration d = t.getDuration();
+		cout << t.getTitle() << "-" << t.getPresenter() << "-" << d.getMinutes() << "-" << d.getSeconds() << "-" << t.getLikes() << "-" << t.getLink() << endl;
+		//startPlayTutorials();
+		cout << "Would you like to add this tutorial to your watch list ?Please answer with y for yes and n for no..." << endl;
+		string answer;
+		cin >> answer;
+		if (answer == "y")
+		{
+			this->ctrl.addToWatchlist(t);
+		}
+		cout << "Do you want to continue to add tutorials to your watchlist?Please answer with y for yes and n for no..." << endl;
+		cin >> answer;
+
+		if (answer == "n") break;
+		nextTutorial();
+	}
+
 }
 
 void UI::startPlayTutorials()
@@ -301,12 +366,12 @@ void UI::run()
 				}
 				case 2:
 				{
-					startPlayTutorials();
+					deleteWatchList();
 					break;
 				}
 				case 3:
 				{
-					nextTutorial();
+					displayWatchlist();
 					break;
 				}
 				default:

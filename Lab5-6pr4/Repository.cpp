@@ -58,3 +58,20 @@ int Repository::update(const Tutorial& tutorial)
 
 	return 1;
 }
+
+void Repository::updateLikes(const Tutorial& tutorial)
+{
+	int index = -1;
+	for (int i = 0; i < this->tutorials.getSize(); ++i)
+	{
+		if (this->tutorials[i].getLink() == tutorial.getLink())
+		{
+			index = i;
+			break;
+		}
+	}
+
+	if (index == -1)
+		return;
+	this->tutorials[index].setLikes(this->tutorials[index].getLikes() + 1);
+}

@@ -22,9 +22,24 @@ int Controller::updateTutorialRepo(const string& title, const string& presenter,
 	return this->repo.update(tutorial);
 }
 
+void Controller::addToWatchlist(const Tutorial& tutorial)
+{
+	this->watchlist.add(tutorial);
+}
+
 void Controller::addTutorialToPlaylist(const Tutorial& tutorial)
 {
 	this->playlist.add(tutorial);
+}
+
+void Controller::deleteWatchlist(int index)
+{
+	while (index < this->watchlist.getSize() - 1)
+	{
+		this->watchlist[index] = this->watchlist[index + 1];
+		++index;
+	}
+	this->watchlist.setSize(this->watchlist.getSize() - 1);
 }
 
 void Controller::addTutorialByPresenterToPlaylist(const string& presenter)
@@ -47,4 +62,9 @@ void Controller::startPlaylist()
 void Controller::nextTutorialPlaylist()
 {
 	this->playlist.next();
+}
+
+void Controller::updateLikesTutorialRepo(const Tutorial& tutorial)
+{
+	this->repo.updateLikes(tutorial);
 }
