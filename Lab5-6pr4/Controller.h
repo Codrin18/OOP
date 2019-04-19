@@ -25,18 +25,18 @@ public:
 	int delTutorialRepo(const string& title, const string& presenter, const double minutes, const double seconds, const long long& likes, const string& link);
 	//Updates a tutorial
 	int updateTutorialRepo(const string& title, const string& presenter, const double minutes, const double seconds, const long long& likes, const string& link);
-	
+	//Adds a tutorial to the watchlist
 	void addToWatchlist(const Tutorial& tutorial);
-
+	//Adds a tutorial to the playlist
 	void addTutorialToPlaylist(const Tutorial& tutorial);
-
+	//Deletes tutorials from watchlist
 	void deleteWatchlist(int index);
-
+	//Gets all tutorials with a given presenter
 	void addTutorialByPresenterToPlaylist(const string& presenter);
-
+	//Starts the playlist
 	void startPlaylist();
-
+	//It goes to next tutorial
 	void nextTutorialPlaylist();
-
+	//Increases the number of likes of a tutorial in repository
 	void updateLikesTutorialRepo(const Tutorial& tutorial);
 };

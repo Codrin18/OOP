@@ -16,6 +16,8 @@ private:
 	static void printMenu();
 	static void printRepositoryMenu();
 	static void printPlaylistMenu();
+	static int validation_link(string my_url);
+	static int valid_presenter(string presenter);
 	void deleteWatchList();
 
 	void addTutorialToRepo();
@@ -24,6 +26,7 @@ private:
 	void updateLikesTutorialRepo(const Tutorial& tutorial);
 	void displayAllTutorialRepo();
 	void displayWatchlist();
+
 
 	void addTutorialToPlaylist();
 	void startPlayTutorials();

@@ -1,7 +1,7 @@
 #include "UI.h"
 #include <string>
 #include <iostream>
-
+#include <regex>
 using namespace std;
 
 void UI::printMenu()
@@ -29,6 +29,20 @@ void UI::printPlaylistMenu()
 	cout << "2 Delete a tutorial from my watchlist " << endl;
 	cout << "3 See watchlist" << endl;
 	cout << "0 Return" << endl;
+}
+
+int UI::validation_link(string my_url)
+{
+	if (my_url.rfind("http",0) or my_url.rfind("www",0))
+		return 1;
+	return 0;
+}
+
+int UI::valid_presenter(string presenter)
+{
+	if (presenter[0] >= 'A' && presenter[0] <= 'Z')
+		return 1;
+	return 0;
 }
 
 void UI::deleteWatchList()
@@ -69,36 +83,44 @@ void UI::addTutorialToRepo()
 
 	getline(cin, presenter);
 
-	cout << "Enter the minutes: ";
+	if (valid_presenter(presenter) == 1)
+	{
+		cout << "Enter the minutes: ";
 
-	double minutes = 0;
+		double minutes = 0;
 
-	cin >> minutes;
+		cin >> minutes;
 
-	cout << "Enter the seconds: ";
+		cout << "Enter the seconds: ";
 
-	double seconds = 0;
+		double seconds = 0;
 
-	cin >> seconds;
+		cin >> seconds;
 
-	cout << "Enter the number of likes: ";
+		cout << "Enter the number of likes: ";
 
-	long long likes = 0;
+		long long likes = 0;
 
-	cin >> likes;
+		cin >> likes;
 
-	cin.ignore();
+		cin.ignore();
 
-	cout << "Enter the link: ";
+		cout << "Enter the link: ";
 
-	string link;
+		string link;
 
-	cin >> link;
+		cin >> link;
 
-	int res = this->ctrl.addTutorialToRepo(title, presenter, minutes, seconds, likes, link);
-
-	if (res == 1) cout << "The tutorial was added..." << endl;
-	else cout << "The tutorial already exists..." << endl;
+		int res = 0;
+		if (validation_link(link) == 1)
+		{
+			res = this->ctrl.addTutorialToRepo(title, presenter, minutes, seconds, likes, link);
+			if (res == 1) cout << "The tutorial was added..." << endl;
+			else cout << "The tutorial already exists..." << endl;
+		}
+		else cout << "The link you gave is not valid..." << endl;
+	}
+	else cout << "The name of the presenter is not valid..." << endl;
 }
 
 void UI::delTutorialRepo()
@@ -271,6 +293,7 @@ void UI::addTutorialToPlaylist()
 
 		if (answer == "n") break;
 		nextTutorial();
+		p.next();
 	}
 
 }
