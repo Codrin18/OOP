@@ -1,0 +1,5 @@
+﻿  repository.cpp
+C:\Users\Codrin\Desktop\OOP\Lab8-9V2\repository.cpp(26,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\Codrin\Desktop\OOP\Lab8-9V2\repository.cpp(44,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\Codrin\Desktop\OOP\Lab8-9V2\repository.cpp(70,20): warning C4018:  '<': signed/unsigned mismatch
+  Lab8-9V2.vcxproj -> C:\Users\Codrin\Desktop\OOP\Lab8-9V2\Debug\Lab8-9V2.exe
