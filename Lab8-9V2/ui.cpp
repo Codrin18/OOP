@@ -80,75 +80,23 @@ void UI::addTutorialToRepo()
 
 	getline(cin, presenter);
 
-	if (valid_presenter(presenter) == 1)
-	{
-		cout << "Enter the minutes: ";
-
-		double minutes = 0;
-
-		cin >> minutes;
-
-		cout << "Enter the seconds: ";
-
-		double seconds = 0;
-
-		cin >> seconds;
-
-		cout << "Enter the number of likes: ";
-
-		int likes = 0;
-
-		cin >> likes;
-
-		cin.ignore();
-
-		cout << "Enter the link: ";
-
-		string link;
-
-		cin >> link;
-
-		int res = 0;
-		if (validation_link(link) == 1)
-		{
-			res = this->ctrl.addTutorialToRepo(title, presenter, minutes, seconds, likes, link);
-			if (res == 1) cout << "The tutorial was added..." << endl;
-			else cout << "The tutorial already exists..." << endl;
-		}
-		else cout << "The link you gave is not valid..." << endl;
-	}
-	else cout << "The name of the presenter is not valid..." << endl;
-}
-
-void UI::delTutorialRepo()
-{
-	cout << "Enter the title: ";
-
-	string title;
-
-	getline(cin, title);
-
-	cout << "Enter the presenter: ";
-
-	string presenter;
-
-	getline(cin, presenter);
+	
 
 	cout << "Enter the minutes: ";
 
-	double minutes = 0;
+	int minutes = 0;
 
 	cin >> minutes;
 
 	cout << "Enter the seconds: ";
 
-	double seconds = 0;
+	int seconds = 0;
 
 	cin >> seconds;
 
 	cout << "Enter the number of likes: ";
 
-	long long likes = 0;
+	int likes = 0;
 
 	cin >> likes;
 
@@ -158,12 +106,40 @@ void UI::delTutorialRepo()
 
 	string link;
 
+	cin >> link;
+
+	try
+	{
+		this->ctrl.addTutorialToRepo(title, presenter, minutes, seconds, likes, link);
+	}
+	catch (TutorialExceptions ex)
+	{
+		for (auto e : ex.getErrors())
+		{
+			cout << e << endl;
+		}
+	}
+	catch (RepositoryException& e)
+	{
+		cout << e.what() << endl;
+	}
+	
+	
+}
+
+void UI::delTutorialRepo()
+{
+	
+	cout << "Enter the link: ";
+
+	string link;
+
 	getline(cin, link);
 	try
 	{
 		this->ctrl.delTutorialRepo(link);
 	}
-	catch (DeleteException e)
+	catch (RepositoryException &e)
 	{
 		cout << e.what();
 	}
@@ -186,19 +162,19 @@ void UI::updateTutorialRepo()
 
 	cout << "Enter the minutes: ";
 
-	double minutes = 0;
+	int minutes = 0;
 
 	cin >> minutes;
 
 	cout << "Enter the seconds: ";
 
-	double seconds = 0;
+	int seconds = 0;
 
 	cin >> seconds;
 
 	cout << "Enter the number of likes: ";
 
-	long long likes = 0;
+	int likes = 0;
 
 	cin >> likes;
 
@@ -210,13 +186,21 @@ void UI::updateTutorialRepo()
 
 	getline(cin, link);
 
-	int res = this->ctrl.updateTutorialRepo(title, presenter, minutes, seconds, likes, link);
-
-	if (res == 1)
+	try
 	{
-		cout << "The information about the tutorial were updated..." << endl;
+		this->ctrl.updateTutorialRepo(title, presenter, minutes, seconds, likes, link);
 	}
-	else cout << "The tutorial does not exists..." << endl;
+	catch (TutorialExceptions ex)
+	{
+		for (auto e : ex.getErrors())
+		{
+			cout << e << endl;
+		}
+	}
+	catch (RepositoryException& e)
+	{
+		cout << e.what() << endl;
+	}
 }
 
 void UI::updateLikesTutorialRepo(const Tutorial& tutorial)

@@ -2,6 +2,7 @@
 
 #include "repository.h"
 #include "playlist.h"
+#include "TutorialValidator.h"
 
 class Controller
 {
@@ -10,6 +11,7 @@ private:
 	Repository repo;
 	Playlist playlist;
 	vector<Tutorial> watchlist;
+	TutorialValidator validator;
 
 public:
 	//Constructor for controller

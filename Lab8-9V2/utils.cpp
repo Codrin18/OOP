@@ -52,11 +52,11 @@ void CSVHandler::writeToFile(std::vector<Tutorial> watchList)
 
 void CSVHandler::writeToHTML(std::vector<Tutorial> watchList)
 {
-	string htmlStart = "<!DOCTYPE html><html><head><style>table {font-family: arial, sans-serif;border-collapse: collapse;width: 100%;}td, th {border: 1px solid #dddddd;text-align: left;padding: 8px;}tr:nth-child(even) {background-color: #dddddd;}</style></head><body><h2>Pets available</h2><table><tr><th>Bree</th><th>Name</th><th>Age</th><th>Photo</th></tr>";
+	string htmlStart = "<!DOCTYPE html><html><head><style>table {font-family: arial, sans-serif;border-collapse: collapse;width: 100%;}td, th {border: 1px solid #dddddd;text-align: left;padding: 8px;}tr:nth-child(even) {background-color: #dddddd;}</style></head><body><h2>Tutorials available</h2><table><tr><th>Title</th><th>Presenter</th><th>Minutes</th><th>Seconds</th><th>Likes</th><th>Link</th></tr>";
 	string htmlEnd = "</table></body></html>";
 	ofstream myfile;
 
-	myfile.open("plop.html", std::ios_base::out);
+	myfile.open("tutorial.html", std::ios_base::out);
 
 	myfile << htmlStart;
 

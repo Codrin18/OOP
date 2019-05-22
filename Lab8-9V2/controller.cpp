@@ -2,8 +2,8 @@
 
 bool Controller::addTutorialToRepo(const string& title, const string& presenter, const int& minutes, const int& seconds, const int& likes, const string& link)
 {
+	this->validator.validate(Tutorial{ title,presenter,minutes,seconds,likes,link });
 	bool result = this->repo.add(title, presenter, minutes, seconds, likes, link);
-
 	if (result)
 		this->repo.writeToFile();
 
@@ -17,6 +17,7 @@ void Controller::delTutorialRepo(const string& link)
 
 bool Controller::updateTutorialRepo(const string& title, const string& presenter, const int& minutes, const int& seconds, const int& likes, const string& link)
 {
+	this->validator.validate(Tutorial{ title,presenter,minutes,seconds,likes,link });
 	bool result = this->repo.update(Tutorial{ title,presenter,minutes,seconds,likes,link });
 
 	if (result)
