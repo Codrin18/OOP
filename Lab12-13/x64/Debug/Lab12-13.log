@@ -1,0 +1,10 @@
+﻿  Uic'ing Lab1213.ui...
+  Rcc'ing Lab1213.qrc...
+   RCC: Warning: No resources in 'C:\Users\Codrin\source\repos\Lab12-13\Lab1213.qrc'.
+  moc_Lab1213.cpp
+  qrc_Lab1213.cpp
+  Lab1213.cpp
+  TutorialValidator.cpp
+  controller.cpp
+  main.cpp
+  Lab12-13.vcxproj -> C:\Users\Codrin\source\repos\Lab12-13\x64\Debug\Lab12-13.exe
