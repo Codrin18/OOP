@@ -1,0 +1,25 @@
+<UI version="4.0" >
+ <class>Lab1213Class</class>
+ <widget class="QWidget" name="Lab1213Class" >
+  <property name="objectName" >
+   <string notr="true">Lab1213Class</string>
+  </property>
+  <property name="geometry" >
+   <rect>
+	<x>0</x>
+	<y>0</y>
+	<width>600</width>
+	<height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Lab1213</string>
+  </property>
+ </widget>
+ <layoutDefault spacing="6" margin="11" />
+ <pixmapfunction></pixmapfunction>
+ <resources>
+   <include location="Lab1213.qrc"/>
+ </resources>
+ <connections/>
+</UI>
