@@ -15,7 +15,7 @@ private:
 
 public:
 	//Constructor for controller
-	Controller(const Repository& repo) : repo(repo) {}
+	Controller(const Repository& repo,TutorialValidator& v) : repo(repo),validator(v) {}
 	//Returns the elements
 	Repository getRepo()const { return this->repo; }
 	Playlist getPlaylist() const { return this->playlist; }

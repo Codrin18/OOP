@@ -83,7 +83,7 @@ bool Repository::updateLikes(const Tutorial& tutorial)
 	return true;
 }
 
-std::istream& operator >> (std::istream& str, CSVHandler& data)
+std::istream& operator >> (std::istream& str, TextHandler& data)
 {
 	data.readNextRow(str);
 	return str;
@@ -93,7 +93,7 @@ void Repository::readFromFile()
 {
 	std::ifstream file;
 	file.open("tutorial.csv", std::ios_base::in);
-	CSVHandler row;
+	TextHandler row;
 	while (file >> row) {
 		try
 		{
@@ -113,12 +113,7 @@ void Repository::readFromFile()
 void Repository::writeToFile()
 {
 
-	CSVHandler row;
+	TextHandler row;
 
 	row.writeToFile(tutorials);
-
-	bool toHtml = true;
-	if (toHtml) {
-		row.writeToHTML(tutorials);
-	}
 }

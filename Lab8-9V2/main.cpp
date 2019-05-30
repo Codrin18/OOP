@@ -6,7 +6,8 @@ using namespace std;
 int main()
 {
 	Repository repo{};
-	Controller ctrl{ repo };
+	TutorialValidator v;
+	Controller ctrl{ repo,v };
 
 	UI ui{ ctrl };
 

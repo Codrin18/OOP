@@ -11,7 +11,7 @@ void TutorialValidator::validate(const Tutorial& t)
 
 	if (t.getPresenter()[0] >= 'a' && t.getPresenter()[0] <= 'z')
 		errors.push_back("The name of the presenter has to start with an uppercase letter...");
-	if (t.getLink().rfind("http", 0) == false or t.getLink().rfind("www", 0) == false)
+	if (t.getLink().rfind("http", 0) == false && t.getLink().rfind("www", 0) == false)
 		errors.push_back("The link is not valid....");
 
 	if (errors.size() > 0)

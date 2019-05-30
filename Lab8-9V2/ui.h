@@ -1,6 +1,6 @@
 #pragma once
 #include "controller.h"
-
+#include "utils.h"
 class UI
 {
 private:
@@ -25,9 +25,9 @@ private:
 	void updateLikesTutorialRepo(const Tutorial& tutorial);
 	void displayAllTutorialRepo();
 	void displayWatchlist();
+	void seeWatchlist(int type);
 
-
-	void addTutorialToPlaylist();
+	void addTutorialToPlaylist(int type);
 	void startPlayTutorials();
 	void nextTutorial();
 };

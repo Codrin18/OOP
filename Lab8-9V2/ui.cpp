@@ -1,5 +1,7 @@
 #include "ui.h"
 #include "exceptions.h"
+#include <Windows.h>
+#include <shellapi.h>
 using namespace std;
 
 void UI::printMenu()
@@ -26,6 +28,7 @@ void UI::printPlaylistMenu()
 	cout << "1 Add tutorial to playlist and create my watchlist" << endl;
 	cout << "2 Delete a tutorial from my watchlist " << endl;
 	cout << "3 See watchlist" << endl;
+	cout << "4 Open file" << endl;
 	cout << "0 Return" << endl;
 }
 
@@ -239,7 +242,20 @@ void UI::displayWatchlist()
 	}
 }
 
-void UI::addTutorialToPlaylist()
+void UI::seeWatchlist(int type)
+{
+	if (type)
+	{
+		ShellExecute(NULL, "open", "watchlist.html",
+			NULL, NULL, SW_SHOWNORMAL);
+	}
+	else
+	{
+		system("notepad watchlist.csv");
+	}
+}
+
+void UI::addTutorialToPlaylist(int fileType)
 {
 	cout << "Enter the presenter: ";
 	string presenter;
@@ -270,6 +286,17 @@ void UI::addTutorialToPlaylist()
 		p.next();
 	}
 
+	if (fileType == 0)
+	{
+		TextHandler* row = new CsvHandler{};
+		row->writeToFile(this->ctrl.getWatchlist());
+	}
+	else
+	{
+		TextHandler* row = new HtmlHandler{};
+		row->writeToFile(this->ctrl.getWatchlist());
+	}
+
 }
 
 void UI::startPlayTutorials()
@@ -286,6 +313,9 @@ void UI::nextTutorial()
 
 void UI::run()
 {
+	cout << "Where do you want your watchlist to be saved ? Please type 0 for csv file and 1 for html file: ";
+	int fileType;
+	cin >> fileType;
 	while (true)
 	{
 		UI::printMenu();
@@ -358,7 +388,7 @@ void UI::run()
 				{
 				case 1:
 				{
-					addTutorialToPlaylist();
+					addTutorialToPlaylist(fileType);
 					break;
 				}
 				case 2:
@@ -369,6 +399,11 @@ void UI::run()
 				case 3:
 				{
 					displayWatchlist();
+					break;
+				}
+				case 4:
+				{
+					seeWatchlist(fileType);
 					break;
 				}
 				default:
