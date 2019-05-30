@@ -64,12 +64,12 @@ bool Repository::update(const Tutorial& tutorial)
 
 }
 
-bool Repository::updateLikes(const Tutorial& tutorial)
+bool Repository::updateLikes(const string& link)
 {
 	int index = -1;
 	for (int i = 0; i < this->tutorials.size(); ++i)
 	{
-		if (this->tutorials[i].getLink() == tutorial.getLink())
+		if (this->tutorials[i].getLink() == link)
 		{
 			index = i;
 			break;

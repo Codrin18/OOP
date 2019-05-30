@@ -40,5 +40,5 @@ public:
 	//It goes to next tutorial
 	void nextTutorialPlaylist();
 	//Increases the number of likes of a tutorial in repository
-	void updateLikesTutorialRepo(const Tutorial& tutorial);
+	void updateLikesTutorialRepo(const string& link);
 };

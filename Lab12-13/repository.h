@@ -30,7 +30,7 @@ public:
 	*/
 	bool update(const Tutorial& tutorial);
 	//This function increases the number of likes 
-	bool updateLikes(const Tutorial& tutorial);
+	bool updateLikes(const string& link);
 	//Returns all the elements from repository
 	vector<Tutorial> getTutorials() const
 	{

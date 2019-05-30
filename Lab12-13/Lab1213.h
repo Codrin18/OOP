@@ -35,6 +35,8 @@ private:
 	QPushButton* deleteButton;
 	QPushButton* updateButton;
 	QPushButton* moveOneTutorialButton;
+	QPushButton* playButton;
+	QPushButton* likeButton;
 
 	QListWidget* watchlist;
 
@@ -49,7 +51,10 @@ private slots:
 	void listItemChanged();
 
 	void addNewTutorial();
-	//void deleteTutorial();
-	//void updateTutorial();
+	void deleteTutorial();
+	void updateTutorial();
+	void moveTutorial();
+	void playTutorial();
+	void likeTutorial();
 
 };

@@ -62,9 +62,11 @@ void Controller::nextTutorialPlaylist()
 	this->playlist.next();
 }
 
-void Controller::updateLikesTutorialRepo(const Tutorial& tutorial)
+void Controller::updateLikesTutorialRepo(const string& link)
 {
-	this->repo.updateLikes(tutorial);
+	bool result = this->repo.updateLikes(link);
+	if (result)
+		this->repo.writeToFile();
 }
 
 

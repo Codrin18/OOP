@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Lab1213_t {
-    QByteArrayData data[4];
-    char stringdata0[40];
+    QByteArrayData data[9];
+    char stringdata0[109];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,10 +34,17 @@ static const qt_meta_stringdata_Lab1213_t qt_meta_stringdata_Lab1213 = {
 QT_MOC_LITERAL(0, 0, 7), // "Lab1213"
 QT_MOC_LITERAL(1, 8, 15), // "listItemChanged"
 QT_MOC_LITERAL(2, 24, 0), // ""
-QT_MOC_LITERAL(3, 25, 14) // "addNewTutorial"
+QT_MOC_LITERAL(3, 25, 14), // "addNewTutorial"
+QT_MOC_LITERAL(4, 40, 14), // "deleteTutorial"
+QT_MOC_LITERAL(5, 55, 14), // "updateTutorial"
+QT_MOC_LITERAL(6, 70, 12), // "moveTutorial"
+QT_MOC_LITERAL(7, 83, 12), // "playTutorial"
+QT_MOC_LITERAL(8, 96, 12) // "likeTutorial"
 
     },
-    "Lab1213\0listItemChanged\0\0addNewTutorial"
+    "Lab1213\0listItemChanged\0\0addNewTutorial\0"
+    "deleteTutorial\0updateTutorial\0"
+    "moveTutorial\0playTutorial\0likeTutorial"
 };
 #undef QT_MOC_LITERAL
 
@@ -47,7 +54,7 @@ static const uint qt_meta_data_Lab1213[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -55,10 +62,20 @@ static const uint qt_meta_data_Lab1213[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   24,    2, 0x08 /* Private */,
-       3,    0,   25,    2, 0x08 /* Private */,
+       1,    0,   49,    2, 0x08 /* Private */,
+       3,    0,   50,    2, 0x08 /* Private */,
+       4,    0,   51,    2, 0x08 /* Private */,
+       5,    0,   52,    2, 0x08 /* Private */,
+       6,    0,   53,    2, 0x08 /* Private */,
+       7,    0,   54,    2, 0x08 /* Private */,
+       8,    0,   55,    2, 0x08 /* Private */,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -73,6 +90,11 @@ void Lab1213::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         switch (_id) {
         case 0: _t->listItemChanged(); break;
         case 1: _t->addNewTutorial(); break;
+        case 2: _t->deleteTutorial(); break;
+        case 3: _t->updateTutorial(); break;
+        case 4: _t->moveTutorial(); break;
+        case 5: _t->playTutorial(); break;
+        case 6: _t->likeTutorial(); break;
         default: ;
         }
     }
@@ -108,13 +130,13 @@ int Lab1213::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 7)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 7;
     }
     return _id;
 }
